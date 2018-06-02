@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ProDigi - Project List</title>
+    <title>ARSH WeatherApp</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet">
 
 
 </head>
@@ -26,23 +26,16 @@
     </header>
     <main role="main">
         <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Projects List</h1>
-                <br />
-                <div class="area">
-                    <p>
-                        <a href="credits.html" class="btn btn-primary">Main Project</a>
-                    </p>
-                    <p>
-                        <a href="arsh.html" class="btn btn-primary">ARSH</a>
-                    </p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Project 02</a>
-                    </p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Project 03</a>
-                    </p>
-                </div>
+            <h2>Today's Weather</h2>
+            <div class='container'>
+                <h3>
+                    <div id="temp"></div>
+                    <div id="wind"></div>
+                    <div id="minutely"></div>
+                </h3>
+                <h3>
+                    <div id="location"></div>
+                </h3>
             </div>
         </section>
     </main>
@@ -60,7 +53,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="js/card.js"></script>
+    <script src="js/weather.js"></script>
 </body>
 
 </html>
