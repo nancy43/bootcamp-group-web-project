@@ -8,13 +8,18 @@ function weather() {
     function success(position) {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-
+        day = new Date()
         location.innerHTML = 'Latitude is ' + latitude + '° Longitude is ' + longitude + '°';
 
         $.getJSON(url + latitude + "," + longitude + "?callback=?", function(data) {
-            $('#temp').html(((data.currently.temperature) - 32) * (0.56) + '° C');
-            $('#wind').html('Wind Speed : ' + ((data.currently.windSpeed) * 1.6) + 'km/hr');
+            $('#temp').html((data.currently.temperature) + '° F');
+            $('#wind').html('Wind Speed: ' + ((data.currently.windSpeed) * 1.6) + 'km/h');
             $('#minutely').html(data.minutely.summary);
+            $('#humidity').html('Humidity: ' + data.currently.humidity + '%');
+            $('#precip').html('Precipitation: ' + data.currently.precipIntensity + '%');
+            $('#timezone').html(data.timezone);
+            $('#day').html(day);
+            location.innerHTML = data.daily.summary;
         });
     }
 
@@ -22,7 +27,7 @@ function weather() {
         location.innerHTML = "Sorry,Unable to retrieve your location";
     }
 
-    location.innerHTML = "Searching location";
+    location.innerHTML = "Searching.....";
 }
 
 weather();

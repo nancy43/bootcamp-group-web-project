@@ -25,18 +25,40 @@
         </div>
     </header>
     <main role="main">
-        <section class="jumbotron text-center">
+        <section class="container">
             <h2>Today's Weather</h2>
-            <div class='container'>
+            <div class="jumbotron" style="background:skyblue; color:white;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
                 <h3>
-                    <div id="temp"></div>
-                    <div id="wind"></div>
-                    <div id="minutely"></div>
-                </h3>
-                <h3>
-                    <div id="location"></div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div id="timezone" style="padding-bottom: 0.15cm"></div>
+
+                            <div id="day" style="padding-bottom: 0.15cm"></div>
+
+                            <div id="minutely" style="padding-bottom: 0.15cm"></div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div id="img"></div>
+                            <div id="temp" style="font-size: 40px"></div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="precip" style="padding-bottom: 0.15cm"></div>
+
+                            <div id="humidity" style="padding-bottom: 0.15cm"></div>
+
+                            <div id="wind" style="padding-bottom: 0.15cm"></div>
+
+                        </div>
+                    </div>
+
                 </h3>
             </div>
+            <div class="alert alert-info" id="location"></div>
         </section>
     </main>
     <footer class="text-muted">
