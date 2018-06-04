@@ -19,7 +19,7 @@ function weather() {
             $('#wind').html('Wind Speed: ' + (data.currently.windSpeed) + ' m/h');
             $('#minutely').html(data.minutely.summary);
             $('#humidity').html('Humidity: ' + (data.currently.humidity * 100) + '%');
-            $('#precip').html('Precipitation: ' + data.currently.precipIntensity + '%');
+            $('#precip').html('Precipitation: ' + (data.currently.precipIntensity * 100) + '%');
             $('#timezone').html(data.timezone);
             $('#day').html(day);
             img = newFunction(icon, img);
