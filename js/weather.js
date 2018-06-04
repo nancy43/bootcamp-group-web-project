@@ -1,5 +1,6 @@
 function weather() {
-
+    var x = document.getElementById("latitude").value;
+    var y = document.getElementById("longitude").value;
     var location = document.getElementById("location");
     var url = 'https://api.forecast.io/forecast/df7e69b54ab5704912f0b629815f2095/';
 
@@ -17,7 +18,7 @@ function weather() {
             $('#temp').html((data.currently.temperature) + '°F');
             $('#wind').html('Wind Speed: ' + (data.currently.windSpeed) + ' m/h');
             $('#minutely').html(data.minutely.summary);
-            $('#humidity').html('Humidity: ' + data.currently.humidity + '%');
+            $('#humidity').html('Humidity: ' + (data.currently.humidity * 100) + '%');
             $('#precip').html('Precipitation: ' + data.currently.precipIntensity + '%');
             $('#timezone').html(data.timezone);
             $('#day').html(day);
@@ -53,7 +54,7 @@ function weather() {
         } else if (icon == 'wind') {
             img = "windy-weather-50";
         } else if (icon == 'fog') {
-            img = "new-moon-50";
+            img = "dust-50";
         } else if (icon == 'cloudy') {
             img = "cloud-50";
         } else {

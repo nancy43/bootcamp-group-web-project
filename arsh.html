@@ -21,6 +21,13 @@
         <div class="navbar navbar-dark bg-dark">
             <div class="container d-flex justify-content-between">
                 <a href="index.html" class="navbar-brand">ProDigi</a>
+                <form class="navbar-form navbar-right" method="GET">
+                    <div class="form-group">
+                        <input type="text" id="latitude" placeholder="Latitude" class="form-control" required>
+                        <input type="text" id="longitude" placeholder="Longitude" class="form-control" required>
+                    </div>
+                    <button class="btn btn-info navbar-btn" type="submit" onclick="myFunction()">Get Weather</button>
+                </form>
             </div>
         </div>
     </header>
@@ -29,14 +36,25 @@
             <h2>Today's Weather</h2>
             <div class="jumbotron" style="background:skyblue; color:white;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
                 <h3>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div id="timezone" style="padding-bottom: 0.15cm"></div>
+                    <div id="timezone" style="padding-bottom: 0.15cm;font-size:30px;"></div>
+                    <div class="jumbotron" style="color: black;background: whitesmoke">
+                        <div class="row">
+                            <div class="col-sm-6">
 
-                            <div id="day" style="padding-bottom: 0.15cm"></div>
 
-                            <div id="minutely" style="padding-bottom: 0.15cm"></div>
+                                <div id="day" style="padding-bottom: 0.15cm"></div>
 
+                                <div id="minutely" style="padding-bottom: 0.15cm"></div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="precip" style="padding-bottom: 0.15cm"></div>
+
+                                <div id="humidity" style="padding-bottom: 0.15cm"></div>
+
+                                <div id="wind" style="padding-bottom: 0.15cm"></div>
+
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -50,18 +68,11 @@
 
                             </div>
                             <div class="col-sm-4">
-                                <div id="temp" style="font-size: 40px"></div>
+                                <div id="temp" style="font-size: 40px;color: black"></div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div id="precip" style="padding-bottom: 0.15cm"></div>
 
-                            <div id="humidity" style="padding-bottom: 0.15cm"></div>
-
-                            <div id="wind" style="padding-bottom: 0.15cm"></div>
-
-                        </div>
                     </div>
 
                 </h3>
