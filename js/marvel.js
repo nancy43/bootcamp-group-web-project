@@ -5,7 +5,7 @@ $.ajax({
     url: url,
     type: "GET",
     beforeSend: function() {
-        message.innerHTML = "Processing..."
+        message.innerHTML = "loading.."
     },
     complete: function() {
 
