@@ -1,7 +1,6 @@
 
 class Guess{
     constructor() {
-        
        
         // initializes class to fetch data from APIs
         this.fetch = new FetchAPIs();
@@ -27,6 +26,7 @@ class Guess{
         this.guessButton.addEventListener('click', this.guessHandler.bind(this));
     }
 
+    // fill select component with countries data
     fillCountrySelect(data){
        
         const countries = data.map(d => `<option value="${d.code}">${d.name}</option>`).join(' ');
