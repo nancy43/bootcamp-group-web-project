@@ -5,14 +5,16 @@ class Guess{
         this.props = {
             apiGenderize: 'https://api.genderize.io',
             apiRestContries: 'https://restcountries.eu/rest/v2/alpha',
-            countries: [],
         }
         
+        // initializes DOM elements and event handlers
         this.initDOMElements();
-        
+
+        // retrieves country data from api and fill country-select
         this.getContriesData().then(data => {
             this.props.countries = data;
-            console.log(this.props.countries);
+            this.fillCountrySelect(this.props.countries);
+            
         });
 
     }
@@ -25,6 +27,12 @@ class Guess{
 
         //start handlers
         this.guessButton.addEventListener('click', this.guessHandler.bind(this));
+    }
+
+    fillCountrySelect(data){
+       
+        const countries = data.map(d => `<option value="${d.code}">${d.name}</option>`).join(' ');
+        this.countrySelect.innerHTML += countries;
     }
 
     guessHandler(){
