@@ -2,6 +2,14 @@
 class Guess{
     constructor() {
        
+        this.props = {
+            compliments: [
+                'an amazing', 'an excelent', 'a strong', 'a famous', 'a great'
+            ],
+            cardInfo: true,
+        }
+
+
         // initializes class to fetch data from APIs
         this.fetch = new FetchAPIs();
         // initializes DOM elements and event handlers
@@ -14,6 +22,7 @@ class Guess{
             
         });
 
+        this.render();
     }
 
     initDOMElements(){
@@ -21,6 +30,8 @@ class Guess{
         this.userNameInput = document.querySelector('#user-name-input');
         this.countrySelect = document.querySelector('#country-select');
         this.guessButton = document.querySelector('#guess-button');
+        this.cardInfo = document.querySelector('#card-info');
+        this.cardGuess = document.querySelector('#card-guess');
 
         //start handlers
         this.guessButton.addEventListener('click', this.guessHandler.bind(this));
@@ -36,6 +47,18 @@ class Guess{
     guessHandler(){
         console.log(this.userNameInput.value);
         console.log(this.countrySelect.value);
+        this.props.cardInfo = false;
+        this.render();
+    }
+
+    render(){
+        if (this.props.cardInfo) {
+            this.cardGuess.classList.add('d-none')
+            this.cardInfo.classList.remove('d-none')
+        }else{
+            this.cardInfo.classList.add('d-none')
+            this.cardGuess.classList.remove('d-none')
+        }
     }
 
 }
