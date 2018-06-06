@@ -1,14 +1,19 @@
 
 class Guess{
     constructor() {
-        this.initDOMElements();
-
+        
         this.props = {
             apiGenderize: 'https://api.genderize.io',
             apiRestContries: 'https://restcountries.eu/rest/v2/alpha',
+            countries: [],
         }
-
-        this.getCountriesCode().then(d => console.log(d));
+        
+        this.initDOMElements();
+        
+        this.getContriesData().then(data => {
+            this.props.countries = data;
+            console.log(this.props.countries);
+        });
 
     }
 
@@ -44,7 +49,16 @@ class Guess{
         return codes.countries.join(';');
     }
 
-
+    async getContriesData(){
+        const codes = await this.getCountriesCode();
+        const data = await this.fetchCountriesNames(codes);
+        
+        return data
+            .filter(d => d !== null)
+            .map(value =>  { 
+                return {code: value.alpha2Code, name: value.name}
+            });
+    }
 }
 
 window.onload = () => {
