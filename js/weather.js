@@ -1,6 +1,5 @@
 function weather() {
-    var x = document.getElementById("latitude").value;
-    var y = document.getElementById("longitude").value;
+
     var location = document.getElementById("location");
     var url = 'https://api.forecast.io/forecast/df7e69b54ab5704912f0b629815f2095/';
 
@@ -64,5 +63,3 @@ function weather() {
     }
     location.innerHTML = "Searching.....";
 }
-
-weather();

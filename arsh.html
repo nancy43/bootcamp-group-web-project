@@ -22,11 +22,12 @@
             <div class="container d-flex justify-content-between">
                 <a href="index.html" class="navbar-brand">ProDigi</a>
                 <form class="navbar-form navbar-right" method="GET">
+                    <button class="btn btn-info navbar-btn" type="submit" onclick="weather()">Current Weather</button>
                     <div class="form-group">
                         <input type="text" id="latitude" placeholder="Latitude" class="form-control" required>
                         <input type="text" id="longitude" placeholder="Longitude" class="form-control" required>
                     </div>
-                    <button class="btn btn-info navbar-btn" type="submit" onclick="myFunction()">Get Weather</button>
+                    <button class="btn btn-info navbar-btn" type="submit" onclick="getlocation()">Get Weather</button>
                 </form>
             </div>
         </div>
