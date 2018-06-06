@@ -8,13 +8,24 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <title>New Web App</title>
+
+    <style>
+        .card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .card:hover {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+    </style>
 </head>
 
 <body class="container">
 
     <header style="margin: 20px 0 20px 0;">
         <div class="row justify-content-center">
-            <h1>Your Gender</h1>
+            <h1 class="display-1">Your Gender</h1>
         </div>
 
         <div class="row justify-content-center">
@@ -66,18 +77,30 @@
 
         <div class="row justify-content-center" style="margin: 50px 0 10px 0">
             <button id="guess-button" class="btn btn-info" style="font-size: 1.9rem">
-                    <i class="material-icons">send</i> Go and Guess
+                <i class="material-icons">send</i> Go and Guess
             </button>
 
         </div>
     </section>
 
-    <section class="card border-info mb-3 card-body d-none">
-        <div class="output">
+    <section class="card border-info mb-3 card-body">
+        <div>
+            <h4>Ok, so that's what we got...</h4>
+            <h3 class="text-info text-center" style="margin: 20px;">
+                We are
+                <span id="guess-percentage" class="display-4 font-weight-bold">73%</span>
+                sure that your are
+                <span id="guess-gender" class="display-4 font-weight-bold">an amazing Female</span>
+
+            </h3>
+
 
         </div>
 
-        <div class="button-retry">
+        <div class="row justify-content-center" style="margin: 50px 0 10px 0">
+            <button id="guess-button" class="btn btn-info" style="font-size: 1.9rem">
+                <i class="material-icons">insert_emoticon</i> Play again
+            </button>
 
         </div>
     </section>
