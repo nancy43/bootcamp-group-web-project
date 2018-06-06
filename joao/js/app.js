@@ -29,12 +29,14 @@ class Guess{
 
     // fetch all valid countries codes from genderize
     async fetchCountriesCodes(){
-        return await fetch(`${this.props.apiGenderize}/countries`).then(data => data.json());
+        const data = await fetch(`${this.props.apiGenderize}/countries`);
+        return data.json();
     }
 
     //fetch all country names given a list of codes
     async fetchCountriesNames(codes){
-        return await fetch(`${this.props.apiRestContries}?codes=${codes}`).then(data => data.json());
+        const data = await fetch(`${this.props.apiRestContries}?codes=${codes}`);
+        return data.json();
     }
 
     async getCountriesCode(){
