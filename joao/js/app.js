@@ -8,7 +8,7 @@ class Guess{
             apiRestContries: 'https://restcountries.eu/rest/v2/alpha',
         }
 
-        this.getCountriesCode();
+        this.getCountriesCode().then(d => console.log(d));
 
     }
 
@@ -32,9 +32,17 @@ class Guess{
         return await fetch(`${this.props.apiGenderize}/countries`).then(data => data.json());
     }
 
-    getCountriesCode(){
-        this.fetchCountriesCodes().then(data => console.log(data));
+    //fetch all country names given a list of codes
+    async fetchCountriesNames(codes){
+        return await fetch(`${this.props.apiRestContries}?codes=${codes}`).then(data => data.json());
     }
+
+    async getCountriesCode(){
+        const codes = await this.fetchCountriesCodes();
+        return codes.countries.join(';');
+    }
+
+
 }
 
 window.onload = () => {
