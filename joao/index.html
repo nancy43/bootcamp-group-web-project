@@ -10,11 +10,10 @@
     <title>New Web App</title>
 
     <style>
-        
-        html{
+        html {
             background-color: #f5f5f5;
         }
-        
+
         .card {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
             transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
@@ -24,7 +23,7 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         }
 
-        .container{
+        .container {
             background-color: transparent;
         }
     </style>
@@ -94,14 +93,25 @@
 
     <section class="card mb-3 card-body d-none" id="card-guess">
         <div>
-            <h4>Ok, so that's what we got...</h4>
-            <h3 class="text-info text-center" style="margin: 20px;">
-                We are
-                <span id="guess-percentage" class="display-4 font-weight-bold">73%</span>
-                sure that your are
-                <span id="guess-gender" class="display-4 font-weight-bold">an amazing Female</span>
 
-            </h3>
+            <div id="success-find">
+                <h4>Ok, so that's what we got...</h4>
+                <h3 class="text-info text-center" style="margin: 20px;">
+                    We are
+                    <span id="guess-percentage" class="display-4 font-weight-bold"></span>
+                    sure that your are
+                    <span id="guess-gender" class="display-4 font-weight-bold"></span>
+
+                </h3>
+            </div>
+
+            <div id="fail-find" class="d-none">
+                <h3 class="text-info text-center" style="margin: 20px;">
+                    We are very sorry, but we can't tell your gender!
+
+                </h3>
+            </div>
+
 
 
         </div>

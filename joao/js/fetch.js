@@ -36,4 +36,9 @@ class FetchAPIs{
                 return {code: value.alpha2Code, name: value.name}
             });
     }
+
+    async getGuess(name, country){
+        const data = await fetch(`${this.props.apiGenderize}/?name=${name}&country_id=${country}`);
+        return data.json();
+    }
 }
