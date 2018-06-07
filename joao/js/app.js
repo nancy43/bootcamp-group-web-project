@@ -30,6 +30,7 @@ class Guess {
         this.userNameInput = document.querySelector('#user-name-input');
         this.countrySelect = document.querySelector('#country-select');
         this.guessButton = document.querySelector('#guess-button');
+        this.playAgainButton = document.querySelector('#play-again-button');
         this.cardInfo = document.querySelector('#card-info');
         this.cardGuess = document.querySelector('#card-guess');
         this.successFind = document.querySelector('#success-find');
@@ -39,6 +40,7 @@ class Guess {
 
         //start handlers
         this.guessButton.addEventListener('click', this.guessHandler.bind(this));
+        this.playAgainButton.addEventListener('click', this.playAgainHandler.bind(this));
     }
 
     // fill select component with countries data
@@ -74,6 +76,12 @@ class Guess {
             .catch(err => console.log(err))
 
        
+    }
+
+    playAgainHandler(){
+        this.userNameInput.value = ''
+        this.props.cardInfo = true;
+        this.render();
     }
 
     render() {
