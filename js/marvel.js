@@ -17,7 +17,20 @@ var marvel = {
 			footer.innerHTML = data.attributionHTML; 
 			var string = "";
 			string += "<div class ='row'>";
-			 
+			for(var i = 0; i <data.data.results.length;i++) {
+				var element = data.data.results[i];
+				 
+				string += "<div class='col-sm-3'>";
+				string += "<a href='" + element.urls[0].url+ "' target='_blank'>"
+
+				string += "<img src='"+ element.thumbnail.path +"/portrait_fantastic."+element.thumbnail.extension+"'  />";
+				string += "</a>";
+				string += "<h3>" +element.name + "</h3> "; 
+				string += "</div>";
+				if((i+1) % 4 == 0) {   
+		 string += "<div>";
+		 string += "<div class='row'>";
+
 
 	  }
 			 }
