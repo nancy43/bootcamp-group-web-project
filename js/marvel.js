@@ -8,10 +8,10 @@ var marvel = {
 		url: url,
 		type:"GET",
 		beforeSend: function() {
-			message.innerHTML = "Loading...";
+			message.innerHTML = "";
 		},
 		complete: function() {
-			 message.innerHTML = "Successfully Done!";
+			 message.innerHTML = "";
 		},
 		success: function(data) {
 			footer.innerHTML = data.attributionHTML; 
@@ -23,13 +23,14 @@ var marvel = {
 				string += "<div class='col-sm-3'>";
 				string += "<a href='" + element.urls[0].url+ "' target='_blank'>"
 
-				string += "<img src='"+ element.thumbnail.path +"/portrait_fantastic."+element.thumbnail.extension+"'  />";
+				string += "<img src='"+ element.thumbnail.path +"/portrait_incredible."+element.thumbnail.extension+"'  />";
 				string += "</a>";
 				string += "<h3>" +element.name + "</h3> "; 
 				string += "</div>";
 				if((i+1) % 4 == 0) {   
 		 string += "<div>";
 		 string += "<div class='row'>";
+		 
 
 
 	  }
