@@ -21,14 +21,13 @@
         <div class="navbar navbar-dark bg-dark">
             <div class="container d-flex justify-content-between">
                 <a href="index.html" class="navbar-brand">ProDigi</a>
-                <form class="navbar-form navbar-right" method="GET">
-                    <button class="btn btn-info navbar-btn" type="submit" onclick="weather()">Current Weather</button>
-                    <div class="form-group">
-                        <input type="text" id="latitude" placeholder="Latitude" class="form-control" required>
-                        <input type="text" id="longitude" placeholder="Longitude" class="form-control" required>
-                    </div>
-                    <button class="btn btn-info navbar-btn" type="submit" onclick="getlocation()">Get Weather</button>
-                </form>
+                <button class="btn btn-info navbar-right navbar-btn " style="margin-top: 16px;margin-right: 40px" onclick="weather()">Current Weather</button>
+                <div class="navbar-right" style="margin-top: 8px;margin-right: 20px">
+                    <input type="text" id="latitude" placeholder="latitude" style="margin-right: 20px;padding: 5px" required>
+                    <input type="text" id="longitude" placeholder="longitude" style="margin-right: 15px;padding: 5px" required>
+                    <button class="btn btn-info navbar-btn" onclick="weatherloc()">Get Weather</button>
+
+                </div>
             </div>
         </div>
     </header>
@@ -82,11 +81,16 @@
         </section>
     </main>
     <footer class="text-muted">
-        <div class="container">
-            <p class="float-right">
-                <a href="#">Back to top</a>
-            </p>
-            <p>ProDigi Example Projects</p>
+        <div class="container" style="text-align: center">
+            <a href="https://www.linkedin.com/in/arshdeep-singh-a43496121/"><img src="images/icons/linkdin.png" style="width:40px;height: 40px;"></a>
+            <a href="https://www.facebook.com/b.arshdeep"><img src="images/icons/fb.png" style="width:40px;height: 40px;"></a>
+            <a href="https://www.instagram.com/arsh_boparai" /><img src="images/icons/instagram.png" style="width:30px;height: 30px;"></a>
+
+            <a href="https://plus.google.com/u/0/113193075357521890215"><img src="images/icons/google.png" style="width:30px;height: 30px;"></a>
+            <p>Call us: +1(647)967-1672(CA), +1(365)998-1313(CA)</p>
+            <p>Email : dagraphics01@gmail.com</p>
+            <p>Arsh Sample Projects</p>
+            <p><a href="https://arsh-boparai.github.io/AD_GRAPHICS/">&copy; D&amp;A Graphics 2018</a></p>
         </div>
     </footer>
 
@@ -97,6 +101,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/card.js"></script>
     <script src="js/weather.js"></script>
+    <script src="js/location.js"></script>
+
 </body>
 
 </html>
