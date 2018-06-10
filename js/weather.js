@@ -8,19 +8,23 @@ function weather() {
     function success(position) {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-        day = new Date()
-        var img = "leaf"
+        var d = new Date();
+        var day = d.getDay();
+        var img = "leaf";
+        var day1 = "default";
         location.innerHTML = 'Latitude is ' + latitude + '° Longitude is ' + longitude + '°';
 
         $.getJSON(url + latitude + "," + longitude + "?units=ca&callback=?", function(data) {
             var icon = data.currently.icon;
             $('#temp').html((data.currently.temperature) + '°C');
+            $('#visibility').html('Visibility: ' + (data.currently.visibility) + 'km');
             $('#wind').html('Wind Speed: ' + (data.currently.windSpeed) + ' km/h');
             $('#minutely').html(data.minutely.summary);
-            $('#humidity').html('Humidity: ' + (data.currently.humidity * 100) + '%');
-            $('#precip').html('Precipitation: ' + data.currently.precipIntensity + 'cm');
+            $('#humidity').html('Humidity: ' + Math.round((data.currently.humidity * 100)) + '%');
+            $('#uv').html('UV Index: ' + data.currently.uvIndex);
             $('#timezone').html(data.timezone);
-            $('#day').html(day);
+            day1 = newFunction2(day, day1);
+            $('#day').html(day1);
             img = newFunction(icon, img);
             $('#img').html("<img src=images/" + img + ".png></img>");
             location.innerHTML = data.daily.summary;
@@ -64,4 +68,25 @@ function newFunction(icon, img) {
         img = "leaf";
     }
     return img;
+}
+
+function newFunction2(day, day1) {
+    if (day == '0') {
+        day1 = "Sunday";
+    } else if (day == '1') {
+        day1 = "Monday";
+    } else if (day === '2') {
+        day1 = "Tuesday";
+    } else if (day == '3') {
+        day1 = "Wednesday";
+    } else if (day == '4') {
+        day1 = "Thursday";
+    } else if (day == '5') {
+        day1 = "Friday";
+    } else if (day == '6') {
+        day1 = "Saturday";
+    } else {
+        day1 = "Default";
+    }
+    return day1;
 }
