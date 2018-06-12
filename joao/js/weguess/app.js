@@ -1,4 +1,4 @@
-class Guess {
+class WeGuess {
     constructor() {
 
         this.props = {
@@ -105,6 +105,3 @@ class Guess {
 
 }
 
-window.onload = () => {
-    window.app = new Guess();
-};

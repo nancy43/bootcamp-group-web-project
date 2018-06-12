@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -121,11 +122,25 @@
         </div>
     </section>
 
-    <!-- contains the class to fetch data form APIs -->
-    <script src="js/weguess/fetch.js"></script>
-    <!-- creates a instance off Guess in window.app -->
-    <script src="js/weguess/app.js"></script>
+</body>
 
+</html>
+<!-- 
+
+<script src="js/youguess/app.js"></script>
+<script src="js/youguess/fetch.js"></script> -->
+
+<!-- contains the class to fetch data form APIs -->
+<script src="js/weguess/fetch.js"></script>
+<!-- creates a instance off Guess in window.app -->
+<script src="js/weguess/app.js"></script>
+
+<script>
+    window.onload = () => {
+        window.wguess = new WeGuess();
+        // window.yguess = new YouGuess();
+    };
+</script>
 </body>
 
 </html>
