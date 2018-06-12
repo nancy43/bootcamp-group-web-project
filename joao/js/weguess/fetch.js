@@ -1,4 +1,4 @@
-class FetchAPIs{
+class FetchWeAPIs{
     constructor() {
         this.props = {
             apiGenderize: 'https://api.genderize.io',

@@ -125,20 +125,22 @@
 </body>
 
 </html>
-<!-- 
 
-<script src="js/youguess/app.js"></script>
-<script src="js/youguess/fetch.js"></script> -->
-
-<!-- contains the class to fetch data form APIs -->
+<!-- contains the class to fetch data from Gender & Countries APIs -->
 <script src="js/weguess/fetch.js"></script>
-<!-- creates a instance off Guess in window.app -->
+<!-- creates a instance off WeGuess in window.app -->
 <script src="js/weguess/app.js"></script>
+
+
+<!-- contains the class to fetch data from RandomUsers APIs -->
+<script src="js/youguess/app.js"></script>
+<!-- creates a instance off YouGuess in window.app -->
+<script src="js/youguess/fetch.js"></script>
 
 <script>
     window.onload = () => {
         window.wguess = new WeGuess();
-        // window.yguess = new YouGuess();
+        window.yguess = new YouGuess();
     };
 </script>
 </body>

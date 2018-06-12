@@ -11,7 +11,7 @@ class WeGuess {
 
 
         // initializes class to fetch data from APIs
-        this.fetch = new FetchAPIs();
+        this.fetch = new FetchWeAPIs();
         // initializes DOM elements and event handlers
         this.initDOMElements();
 
