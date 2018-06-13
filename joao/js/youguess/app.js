@@ -17,6 +17,7 @@ class YouGuess{
         //this.initDOMElements();
 
         this.fetch.getUsers().then(r => console.log(r));
+        
     }
 
     createDOMElements(){
