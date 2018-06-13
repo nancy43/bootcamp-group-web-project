@@ -7,6 +7,9 @@ class WeGuess {
             ],
             cardInfo: true,
             finalMessage: true,
+            title: 'Your Gender',
+            subtitle: 'Let us try to figure out your gender',
+            backgroundColor: 'blue'
         }
 
         // initializes class to fetch data from APIs
@@ -17,6 +20,9 @@ class WeGuess {
 
         // initializes DOM elements and event handlers
         this.initDOMElements();
+
+        // sets title, subtitle and background color
+        this.setTheme();
 
         // retrieves country data from api and fill country-select
         this.fetch.getContriesData().then(data => {
@@ -128,6 +134,15 @@ class WeGuess {
         this.playAgainButton.addEventListener('click', this.playAgainHandler.bind(this));
     }
 
+    setTheme(){
+        const mainTitle = document.querySelector('#main-title');
+        const mainSubtitle = document.querySelector('#main-subtitle');
+        mainTitle.innerHTML = this.props.title;
+        mainSubtitle.innerHTML = this.props.subtitle;
+
+        document.body.style.backgroundColor = '#c7e6fa';
+        
+    }
     // fill select component with countries data
     fillCountrySelect(data) {
 
