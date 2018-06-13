@@ -1,10 +1,10 @@
 class FetchYouAPIs {
-    constructor() {
+    constructor(qtd) {
         this.props = {
             apiRandomUser: 'https://randomuser.me/api/',
             apiRestContries: 'https://restcountries.eu/rest/v2/alpha',
             inc: 'gender,name,nat',
-            qtd: 10
+            qtd
         }
     }
 

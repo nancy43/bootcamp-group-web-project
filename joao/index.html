@@ -33,6 +33,20 @@
             max-height: 190px;
             overflow-y: auto;
         }
+
+        @media only screen and (min-device-width: 320px) and (max-device-width: 667px) {
+            .display-1 {
+                font-size: 3rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            .mb-5 {
+                margin-bottom: 2rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -40,7 +54,7 @@
 
     <header style="margin: 20px 0 20px 0;">
         <div class="row justify-content-center">
-            <h1 id="main-title" class="display-1">Guess the gender</h1>
+            <h1 id="main-title" class="display-1 title-mobile">Guess the gender</h1>
         </div>
 
         <div class="row justify-content-center">
