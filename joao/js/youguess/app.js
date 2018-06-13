@@ -1,6 +1,7 @@
 class YouGuess{
     constructor() {
-        
+        this.fetch = new FetchYouAPIs();
+
         this.props = {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
@@ -14,6 +15,8 @@ class YouGuess{
 
         // initializes DOM elements and event handlers
         //this.initDOMElements();
+
+        this.fetch.getUsers().then(r => console.log(r));
     }
 
     createDOMElements(){
@@ -22,8 +25,9 @@ class YouGuess{
             
 
         <section class="card mb-3 card-body " id="card-guess">
-        <div>
-            <h3 id="name-country" class="border-bottom mb-5 pb-2">My name is John, I'm from Brazil</h3>
+        <div class="d-flex">
+            <h3 style="flex: 1;" id="name-country" class="border-bottom mb-5 pb-2">My name is John, I'm from Brazil</h3>
+            <h3>🚀1<h3>
         </div>
 
         <div>
