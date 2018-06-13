@@ -9,7 +9,7 @@ class WeGuess {
             finalMessage: true,
             title: 'Your Gender',
             subtitle: 'Let us try to figure out your gender',
-            backgroundColor: 'blue'
+            backgroundColor: '#c7e6fa'
         }
 
         // initializes class to fetch data from APIs
@@ -140,7 +140,7 @@ class WeGuess {
         mainTitle.innerHTML = this.props.title;
         mainSubtitle.innerHTML = this.props.subtitle;
 
-        document.body.style.backgroundColor = '#c7e6fa';
+        document.body.style.backgroundColor = this.props.backgroundColor;
         
     }
     // fill select component with countries data
