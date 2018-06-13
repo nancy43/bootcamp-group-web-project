@@ -48,7 +48,7 @@ class WeGuess {
 
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                            <i class="material-icons" style="color: #3498DB;">account_box</i>
+                            <i class="zmdi zmdi-account" style="color: #3498DB;"></i>
                         </span>
                     </div>
                     <input type="email" class="form-control form-control-lg" id="user-name-input">
@@ -62,7 +62,7 @@ class WeGuess {
 
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                            <i class="material-icons" style="color: #3498DB;">place</i>
+                            <i class="zmdi zmdi-pin" style="color: #3498DB;"></i>
                         </span>
                     </div>
                     <select id="country-select" class="form-control form-control-lg"></select>
@@ -75,7 +75,7 @@ class WeGuess {
 
         <div class="row justify-content-center" style="margin: 50px 0 10px 0">
             <button id="guess-button" class="btn btn-info" style="font-size: 1.9rem">
-                <i class="material-icons">send</i> Go and Guess
+                <i class="zmdi zmdi-mail-send"></i> Go and Guess
             </button>
 
         </div>
@@ -108,7 +108,7 @@ class WeGuess {
 
         <div class="row justify-content-center" style="margin: 50px 0 10px 0">
             <button id="play-again-button" class="btn btn-info" style="font-size: 1.9rem">
-                <i class="material-icons">insert_emoticon</i> Play again
+                <i class="zmdi zmdi-mood"></i> Play again
             </button>
 
         </div>

@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <title>New Web App</title>
 
@@ -68,14 +70,18 @@
 
             <div>
                 <div class="btn-group-toggle mb-3">
-                    <label class="btn btn-outline-success btn-lg" for="gender-choice">Male
+                    <label class="btn btn-outline-warning btn-lg" for="gender-choice" style="width: 130px;">
+                        <i class="zmdi zmdi-male"></i> Male
                         <input type="radio" name="gender-choice" id="gender-choice-1" value="male" autoComplete="off">
+
                     </label>
 
                 </div>
 
                 <div class="btn-group-toggle mb-5">
-                    <label class="btn btn-outline-success btn-lg" for="gender-choice">Female
+                    <label class="btn btn-outline-warning btn-lg" for="gender-choice" style="width: 130px;">
+                        <i class="zmdi zmdi-female"></i>
+                        Female
                         <input type="radio" name="gender-choice" id="gender-choice-2" value="male" autoComplete="off">
                     </label>
                 </div>
@@ -84,7 +90,7 @@
 
             <div class="row justify-content-center">
                 <button id="play-next" class="btn btn-success " style="font-size: 1.9rem; width: 130px">
-                    <i class="material-icons">forward</i> Next
+                    <i class="zmdi zmdi-forward"></i> Next
                 </button>
             </div>
 
@@ -102,7 +108,7 @@
 
                         <div class="input-group-append">
                             <button id="guess-button" class="btn btn-success" style="font-size: 1.9rem">
-                                <i class="material-icons">play_circle_outline</i> Play
+                                <i class="zmdi zmdi-play-circle-outline"></i> Play
                             </button>
                         </div>
 
