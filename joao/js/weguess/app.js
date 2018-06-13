@@ -9,9 +9,12 @@ class WeGuess {
             finalMessage: true,
         }
 
-
         // initializes class to fetch data from APIs
         this.fetch = new FetchWeAPIs();
+
+        // initializes page elements
+        this.createDOMElements();
+
         // initializes DOM elements and event handlers
         this.initDOMElements();
 
@@ -23,6 +26,88 @@ class WeGuess {
         });
 
         this.render();
+    }
+
+    createDOMElements(){
+        const content = document.querySelector('#content');
+        content.innerHTML = `        
+        <section class="card mb-3 card-body" id="card-info">
+
+        <div class="row">
+
+            <div class=" col-sm-12 col-md-6">
+                <label for="user-name-input" class="col-form-label col-form-label-lg">Please, provide your name</label>
+
+                <div class="input-group mb-3">
+
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons" style="color: #3498DB;">account_box</i>
+                        </span>
+                    </div>
+                    <input type="email" class="form-control form-control-lg" id="user-name-input">
+
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 ">
+                <label for="country-select" class="col-form-label col-form-label-lg">What's your country?</label>
+                <div class="input-group mb-3">
+
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons" style="color: #3498DB;">place</i>
+                        </span>
+                    </div>
+                    <select id="country-select" class="form-control form-control-lg"></select>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="row justify-content-center" style="margin: 50px 0 10px 0">
+            <button id="guess-button" class="btn btn-info" style="font-size: 1.9rem">
+                <i class="material-icons">send</i> Go and Guess
+            </button>
+
+        </div>
+    </section>
+
+    <section class="card mb-3 card-body d-none" id="card-guess">
+        <div>
+
+            <div id="success-find">
+                <h4>Ok, so that's what we got...</h4>
+                <h3 class="text-info text-center" style="margin: 20px;">
+                    We are
+                    <span id="guess-percentage" class="display-4 font-weight-bold"></span>
+                    sure that your are
+                    <span id="guess-gender" class="display-4 font-weight-bold"></span>
+
+                </h3>
+            </div>
+
+            <div id="fail-find" class="d-none">
+                <h3 class="text-info text-center" style="margin: 20px;">
+                    We are very sorry, but we can't tell your gender!
+
+                </h3>
+            </div>
+
+
+
+        </div>
+
+        <div class="row justify-content-center" style="margin: 50px 0 10px 0">
+            <button id="play-again-button" class="btn btn-info" style="font-size: 1.9rem">
+                <i class="material-icons">insert_emoticon</i> Play again
+            </button>
+
+        </div>
+    </section>
+        `
     }
 
     initDOMElements() {
