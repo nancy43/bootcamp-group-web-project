@@ -8,7 +8,7 @@ class YouGuess {
             randomUnicode: ['🚀', '🎇', '🌊', '😺', '🍔'],
             totalQuestions: 10,
             email: '',
-            users : [],
+            users: [],
             question: ''
         }
 
@@ -178,62 +178,71 @@ class YouGuess {
 
     }
 
-    handleGuess() {
-        if (this.userEmailInput.value == '') {alert('You need to insert your email'); return};
+    async handleGuess() {
+        if (this.userEmailInput.value == '') {
+            alert('You need to insert your email');
+            return
+        };
 
-        this.fetch.getUsers()
-            .then(users => {
-                this.props.users = users;
+        try {
+            const users = await this.fetch.getUsers();
 
-                this.props.email = this.userEmailInput.value;
-                this.cardGuess.classList.remove('d-none');
-                this.cardIntro.classList.add('d-none');
+            this.props.users = users;
 
-                this.fillNextQuestion();
-                this.renderQuestion();
+            this.props.email = this.userEmailInput.value;
+            this.cardGuess.classList.remove('d-none');
+            this.cardIntro.classList.add('d-none');
 
+            this.fillNextQuestion();
+            this.renderQuestion();
 
-            })
-            .catch(err => console.log(err))
+        } catch (err) {
+            console.log(err)
+        }
 
     }
 
-    handleNextPlay(){
+    handleNextPlay() {
+
         
-        if(this.fillNextQuestion()){
+
+
+        if (this.fillNextQuestion()) {
             this.renderQuestion();
 
-        }else{
+        } else {
             this.renderEnd()
         }
 
     }
 
-    fillNextQuestion(){
+    fillNextQuestion() {
 
         // WIP
-        if (!this.props.users.length) {return false;}
+        if (!this.props.users.length) {
+            return false;
+        }
 
         this.props.question = this.props.users.pop();
-          
+
         return true;
-         
+
 
     }
 
-    renderQuestion(){
-        
+    renderQuestion() {
+
         this.currentQuestion.innerHTML = `<span class="badge badge-success">${this.getCurrentQuestion()}</span>`;
         this.nameCountry.innerHTML =
-        `My name is <span class="text-capitalize">${this.props.question.name}</span>, I'm from ${this.props.question.country}` ;
-     
+            `My name is <span class="text-capitalize">${this.props.question.name}</span>, I'm from ${this.props.question.country}`;
+
     }
 
-    renderEnd(){
+    renderEnd() {
         alert('the end');
     }
 
-    getCurrentQuestion(){
+    getCurrentQuestion() {
         return (this.props.totalQuestions) - this.props.users.length;
     }
 }
