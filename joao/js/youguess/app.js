@@ -1,38 +1,39 @@
-class YouGuess{
+class YouGuess {
     constructor() {
 
         this.props = {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
             backgroundColor: '#c4ede5',
-            questionNumber : 1,
-            randomUnicode : ['🚀','🎇','🌊','😺', '🍔'],
+            randomUnicode: ['🚀', '🎇', '🌊', '😺', '🍔'],
             totalQuestions: 10,
-            email: ''
+            email: '',
+            users : [],
+            question: ''
         }
 
         this.fetch = new FetchYouAPIs(this.props.totalQuestions);
 
         // initializes page elements
         this.createDOMElements();
-        
+
         // initializes DOM elements and event handlers
         this.initDOMElements();
-        
+
         // sets title, subtitle, questions number and background color
         this.setTheme();
 
-        this.fetch.getUsers().then(r => console.log(r));
-        
+        // this.fetch.getUsers().then(r => console.log(r));
+
     }
 
-    createDOMElements(){
+    createDOMElements() {
         const content = document.querySelector('#content');
         content.innerHTML = `
             
         <section class="card mb-3 card-body d-none" id="card-guess">
-        <div class="d-flex">
-            <h3 style="flex: 1;" id="name-country" class="border-bottom mb-5 pb-2">My name is John, I'm from Brazil</h3>
+        <div class="d-flex border-bottom mb-5 pb-2">
+            <h3 style="flex: 1;" id="name-country" ></h3>
             <h3 id="current-question"><h3>
         </div>
 
@@ -64,7 +65,7 @@ class YouGuess{
 
     </section>
 
-    <div class="row">
+    <div class="row" id="card-intro">
         <div class="col-md-6 d-flex">
             <section class="card mb-3 card-body" id="card-info">
                 <h3 class="card-title border-bottom mb-5 pb-2">Ok, so that's what we got</h3>
@@ -146,7 +147,7 @@ class YouGuess{
         `;
     }
 
-    initDOMElements(){
+    initDOMElements() {
         this.mainTitle = document.querySelector('#main-title');
         this.mainSubtitle = document.querySelector('#main-subtitle');
         this.userEmailInput = document.querySelector('#user-email-input');
@@ -154,6 +155,7 @@ class YouGuess{
         this.guessersTable = document.querySelector('#guessers-table');
         this.guessButton = document.querySelector('#guess-button');
         this.cardGuess = document.querySelector('#card-guess');
+        this.cardIntro = document.querySelector('#card-intro');
         this.nameCountry = document.querySelector('#name-country');
         this.currentQuestion = document.querySelector('#current-question');
         this.genderChoiceFemale = document.querySelector('#gender-choice-female');
@@ -163,20 +165,75 @@ class YouGuess{
         this.playNextButton = document.querySelector('#play-next');
 
         //start handlers
-        this.guessButton.addEventListener('click', this.guessHandler.bind(this));
-        // this.playNextButton.addEventListener('click', this.playAgainHandler.bind(this));
+        this.guessButton.addEventListener('click', this.handleGuess.bind(this));
+        this.playNextButton.addEventListener('click', this.handleNextPlay.bind(this));
     }
 
-    setTheme(){
-        
+    setTheme() {
+
         this.mainTitle.innerHTML = this.props.title;
         this.mainSubtitle.innerHTML = this.props.subtitle;
         this.questionsNumber.innerHTML = this.props.totalQuestions;
         document.body.style.backgroundColor = this.props.backgroundColor;
-        
+
     }
 
-    guessHandler(){
+    handleGuess() {
+        if (this.userEmailInput.value == '') {alert('You need to insert your email'); return};
 
+        this.fetch.getUsers()
+            .then(users => {
+                this.props.users = users;
+
+                this.props.email = this.userEmailInput.value;
+                this.cardGuess.classList.remove('d-none');
+                this.cardIntro.classList.add('d-none');
+
+                this.fillNextQuestion();
+                this.renderQuestion();
+
+
+            })
+            .catch(err => console.log(err))
+
+    }
+
+    handleNextPlay(){
+        
+        if(this.fillNextQuestion()){
+            this.renderQuestion();
+
+        }else{
+            this.renderEnd()
+        }
+
+    }
+
+    fillNextQuestion(){
+
+        // WIP
+        if (!this.props.users.length) {return false;}
+
+        this.props.question = this.props.users.pop();
+          
+        return true;
+         
+
+    }
+
+    renderQuestion(){
+        
+        this.currentQuestion.innerHTML = `<span class="badge badge-success">${this.getCurrentQuestion()}</span>`;
+        this.nameCountry.innerHTML =
+        `My name is <span class="text-capitalize">${this.props.question.name}</span>, I'm from ${this.props.question.country}` ;
+     
+    }
+
+    renderEnd(){
+        alert('the end');
+    }
+
+    getCurrentQuestion(){
+        return (this.props.totalQuestions) - this.props.users.length;
     }
 }
