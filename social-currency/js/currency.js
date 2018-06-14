@@ -1,3 +1,13 @@
+/* 
+	Author: 		Bruno Santos
+	Date:			2018-05-29
+	Version: 		1.0
+	Description:	1) Get realtime currency quotes based on API call
+					2) Provides currency exchange conversion
+					
+					API documentation: https://currencylayer.com/documentation
+*/
+
 "use strict";
 let $ = function (id) {
     return document.getElementById(id);
@@ -5,8 +15,20 @@ let $ = function (id) {
 
 const usd = 'USD';
 
+/* Sample quote object formated:
+	{
+		"USD": { "CAD":1.299810, "BRL":3.719599 }
+		"CAD": { "USD":0.769343, "BRL":2.861648 }	-- 1/USD->CAD , CAD->USD * USD->BRL
+		"BRL": { "USD":0.769343, "CAD":2.861648 }	-- 1/USD->BRL , BRL->USD * USD->CAD
+	}
+*/
 let quotes = {};
 
+/*--
+	It gets json quote object from API based on:
+	(1) FROM realtime USD quotes
+	(2) TO fixed currencies quotes: CAD, BRL, EUR 
+*/
 let initQuotes = function() {
 	const web_site		= 'http://apilayer.net/api/';
 	const endpoint 		= 'live'
@@ -30,6 +52,10 @@ let initQuotes = function() {
 		});
 }
 
+/*--
+	It split and build a json quote object based on:
+	(1) USD quotes from API
+*/
 let buildUsdQuote = function(jsonObj) {
 	// Original: "quotes":{"USDCAD":1.29981,"USDBRL":3.719599,"USDUSD":1}
 	let newObj = {};
@@ -42,6 +68,10 @@ let buildUsdQuote = function(jsonObj) {
 	quotes[usd] = newObj;
 }
 
+/*--
+	It calculater others quotes based on:
+	(1) USD quotes from json object
+*/
 let buildOthersQuotes = function() {
 	let newObj, fromSymbol, fromRate;
 	
@@ -64,6 +94,10 @@ let buildOthersQuotes = function() {
 	}	
 }
 
+/*--
+	It populates combo FROM based on:
+	(1) json object quotes
+*/
 let initOptionsFrom = function() {
 	let defaultOption = document.createElement('option');
 	defaultOption.text = 'Choose';
@@ -82,9 +116,60 @@ let initOptionsFrom = function() {
 	}	
 }
 
+/*--
+	It populates combo TO based on:
+	(1) selected combo FROM 
+	(2) json object quotes
+*/
+let refreshCmbTo = function() {
+	$("amount_to").innerHTML = "";		// Clear amount TO
+	let selectedFrom = $("currency_from").value;
+	
+	let defaultOption = document.createElement('option');
+	defaultOption.text = 'Choose';
+	
+	let cmbTo = $("currency_to");
+	cmbTo.length = 0;
+	cmbTo.add(defaultOption);			// set default option
+	cmbTo.selectedIndex = 0;
+	
+	let option;							// Populates symbols and quotes
+	for (let symbol in quotes[selectedFrom]) {
+		option = document.createElement('option');
+		option.text = symbol;
+		option.value = quotes[selectedFrom][symbol];
+		cmbTo.add(option);
+	}
+}
+
+/*--
+	It converts the amount FROM -> TO based on:
+	(1) input amount FROM 
+	(2) combo currency FROM
+	(3) combo currency TO
+*/
+let refreshAmountTo = function() {
+	// When no selection , skip convertion & clear 
+	if ( isNaN($("currency_to").value) ) {
+		$("amount_to").innerHTML = "";
+		return;
+	}
+
+	// Convert currency amount FROM -> TO
+	let amountFrom = parseFloat( $("amount_from").value );
+	let amountTo = amountFrom * parseFloat( $("currency_to").value );
+
+	// Format and display converted values
+	$("amount_from").value = amountFrom.toFixed(2);
+	$("amount_to").innerHTML = ( amountFrom.toFixed(2) + " " 
+				+ $("currency_from").value + " = " 
+				+ amountTo.toFixed(2) + " " 
+				+ $("currency_to").options[ $("currency_to").selectedIndex ].text );
+}
+
 window.onload = function () {
-    //$("currency_from").onchange = refreshCmbTo;
-    //$("currency_to").onchange = refreshAmountTo;
-    //$("amount_from").onchange = refreshAmountTo;
+    $("currency_from").onchange = refreshCmbTo;
+    $("currency_to").onchange = refreshAmountTo;
+    $("amount_from").onchange = refreshAmountTo;
 	initQuotes();
 }
