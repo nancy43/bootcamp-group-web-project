@@ -9,7 +9,9 @@ class YouGuess {
             totalQuestions: 10,
             email: '',
             users: [],
-            question: ''
+            question: '',
+            genderChoice: '',
+            playerState : []
         }
 
         this.fetch = new FetchYouAPIs(this.props.totalQuestions);
@@ -37,9 +39,9 @@ class YouGuess {
             <h3 id="current-question"><h3>
         </div>
 
-        <div>
+        <div id="gender-choice">
             <div class="btn-group-toggle mb-3">
-                <label id="label-male" class="btn btn-outline-warning btn-lg" for="gender-choice-mae" style="width: 130px;">
+                <label id="label-male" class="btn btn-outline-warning btn-lg" for="gender-choice-male" style="width: 130px;">
                     <i class="zmdi zmdi-male"></i> Male
                     <input type="radio" name="gender-choice" id="gender-choice-male" value="male" autoComplete="off">
 
@@ -51,7 +53,7 @@ class YouGuess {
                 <label id="label-female" class="btn btn-outline-warning btn-lg" for="gender-choice-female" style="width: 130px;">
                     <i class="zmdi zmdi-female"></i>
                     Female
-                    <input type="radio" name="gender-choice" id="gender-choice-female" value="male" autoComplete="off">
+                    <input type="radio" name="gender-choice" id="gender-choice-female" value="female" autoComplete="off">
                 </label>
             </div>
 
@@ -158,8 +160,9 @@ class YouGuess {
         this.cardIntro = document.querySelector('#card-intro');
         this.nameCountry = document.querySelector('#name-country');
         this.currentQuestion = document.querySelector('#current-question');
-        this.genderChoiceFemale = document.querySelector('#gender-choice-female');
-        this.genderChoiceMale = document.querySelector('#gender-choice-male');
+        // this.genderChoiceFemale = document.querySelector('#gender-choice-female');
+        // this.genderChoiceMale = document.querySelector('#gender-choice-male');
+        this.genderChoice = document.querySelector('#gender-choice');
         this.labelMale = document.querySelector('#label-male');
         this.labelFemale = document.querySelector('#label-female');
         this.playNextButton = document.querySelector('#play-next');
@@ -167,6 +170,42 @@ class YouGuess {
         //start handlers
         this.guessButton.addEventListener('click', this.handleGuess.bind(this));
         this.playNextButton.addEventListener('click', this.handleNextPlay.bind(this));
+        this.genderChoice.addEventListener('click', this.handleGenderChoice.bind(this));
+
+    }
+
+    handleGenderChoice(event) {
+        // prevents double execution of event, since event comes from label
+        event.preventDefault();
+
+        //get control value given that input is inside label
+        const control = event.target.control;
+
+        if (control !== undefined) {
+            this.props.genderChoice = control.value;
+            this.updateGenderUI();
+        }
+        // console.log(x);
+    }
+
+    updateGenderUI() {
+        // TODO: work on this dumb logic
+        if (this.props.genderChoice === '') {
+            this.labelMale.classList.remove('btn-warning');
+            this.labelFemale.classList.remove('btn-warning');
+            this.labelMale.classList.add('btn-outline-warning');
+            this.labelFemale.classList.add('btn-outline-warning');
+        } else if (this.props.genderChoice === 'male') {
+            this.labelFemale.classList.add('btn-outline-warning');
+            this.labelMale.classList.remove('btn-outline-warning');
+            this.labelFemale.classList.remove('btn-warning');
+            this.labelMale.classList.add('btn-warning');
+        } else if (this.props.genderChoice === 'female') {
+            this.labelFemale.classList.remove('btn-outline-warning');
+            this.labelMale.classList.add('btn-outline-warning');
+            this.labelFemale.classList.add('btn-warning');
+            this.labelMale.classList.remove('btn-warning');
+        }
     }
 
     setTheme() {
@@ -193,7 +232,7 @@ class YouGuess {
             this.cardGuess.classList.remove('d-none');
             this.cardIntro.classList.add('d-none');
 
-            this.fillNextQuestion();
+            this.nextQuestion();
             this.renderQuestion();
 
         } catch (err) {
@@ -204,29 +243,57 @@ class YouGuess {
 
     handleNextPlay() {
 
-        
+        // verify if a gender was selected
+        if (!this.isGenderSelected()) {
+            alert('Select a gender');
+            return;
+        }
 
+        this.updatePlayerState()
 
-        if (this.fillNextQuestion()) {
+        // verify if it's over and update player state 
+        if (this.nextQuestion()) {
+            // clean male/female radio options
+            this.updateGenderUI();
+
             this.renderQuestion();
 
         } else {
+            // render final frame
             this.renderEnd()
         }
 
     }
 
-    fillNextQuestion() {
+    isGenderSelected() {
+        return this.props.genderChoice === '' ? false : true;
+    }
 
-        // WIP
+    nextQuestion(){
         if (!this.props.users.length) {
             return false;
         }
 
+        // pop question from props
         this.props.question = this.props.users.pop();
 
-        return true;
+        // reset actual gender choice
+        this.props.genderChoice = ''
 
+        return true;
+    }
+
+    updatePlayerState() {
+        
+        // track gender choice, name, and country
+        const isCorrect = this.props.question.gender === this.props.genderChoice ? true : false;
+        const state = {
+            name: this.props.question.name,
+            country: this.props.question.country,
+            isCorrect
+        }
+        
+        this.props.playerState.push(state);
 
     }
 
