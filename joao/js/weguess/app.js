@@ -86,7 +86,7 @@ class WeGuess {
 
             <div id="success-find">
                 <h4>Ok, so that's what we got...</h4>
-                <h3 class="text-info text-center" style="margin: 20px;">
+                <h3 class="text-info text-center">
                     We are
                     <span id="guess-percentage" class="display-4 font-weight-bold"></span>
                     sure that your are
