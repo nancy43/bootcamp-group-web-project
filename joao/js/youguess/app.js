@@ -5,13 +5,13 @@ class YouGuess {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
             backgroundColor: '#c4ede5',
-            randomUnicode: ['🚀', '🎇', '🌊', '😺', '🍔'],
             totalQuestions: 10,
             email: '',
             users: [],
             question: '',
             genderChoice: '',
-            playerState : []
+            playerState : [],
+            randomUnicode: ['🚀', '🎇', '🌊', '😺', '🍔'],
         }
 
         this.fetch = new FetchYouAPIs(this.props.totalQuestions);
@@ -24,8 +24,6 @@ class YouGuess {
 
         // sets title, subtitle, questions number and background color
         this.setTheme();
-
-        // this.fetch.getUsers().then(r => console.log(r));
 
     }
 
@@ -146,6 +144,22 @@ class YouGuess {
             </section>
         </div>
     </div>
+        `;
+    }
+
+    createResultsDOMElements(){
+        const content = document.querySelector('#content');
+        content.innerHTML = `
+        <div class="row" id="card-intro">
+            <div class="col-md-12 d-flex">
+                <section class="card mb-3 card-body" id="card-info">
+                    <h3 class="card-title border-bottom mb-5 pb-2">And, the results are...</h3>
+                    
+                </section>
+            </div>
+            
+            
+        </div>
         `;
     }
 
@@ -299,17 +313,17 @@ class YouGuess {
 
     renderQuestion() {
 
-        this.currentQuestion.innerHTML = `<span class="badge badge-success">${this.getCurrentQuestion()}</span>`;
+        this.currentQuestion.innerHTML = `<span class="badge badge-success">${this.getQuestionNumber()}</span>`;
         this.nameCountry.innerHTML =
             `My name is <span class="text-capitalize">${this.props.question.name}</span>, I'm from ${this.props.question.country}`;
 
     }
 
     renderEnd() {
-        alert('the end');
+        //this.createResultsDOMElements();
     }
 
-    getCurrentQuestion() {
+    getQuestionNumber() {
         return (this.props.totalQuestions) - this.props.users.length;
     }
 }
