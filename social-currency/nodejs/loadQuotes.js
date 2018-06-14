@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 
 const usd = 'USD';
 let quotes = {};            // TODO: create a class to set/get quotes
+
 /* Sample quote object formated:
 	{
 		"USD": { "CAD":1.299810, "BRL":3.719599 }
@@ -43,4 +44,27 @@ let buildUsdQuote = function(jsonObj) {
 	// Expected: quotes["USD"] = { "CAD":1.29981, "BRL":3.719599 }	
 	quotes[usd] = newObj;
 };
+
+let buildOthersQuotes = function() {
+	let newObj, fromSymbol, fromRate;
+	
+	for (let symbol in quotes[usd]) {			// forEach USD currency
+		newObj = {};							// clear Obj
+
+		fromSymbol = symbol;
+		fromRate = quotes[usd][symbol];
+
+		// convert to USD exchange rate to 6 decimal places
+		newObj[usd] = parseFloat((1 / quotes[usd][symbol]).toFixed(6));
+
+		for (let symbolLoop in quotes[usd]) {	// forEach USD currency AGAIN
+			if (symbolLoop !== symbol) {		// Others currency exchange
+				newObj[symbolLoop] = parseFloat((newObj[usd] * 
+									quotes[usd][symbolLoop]).toFixed(6));
+			}
+		}
+		quotes[fromSymbol] = newObj;
+	}	
+};
+
 initQuotes();
