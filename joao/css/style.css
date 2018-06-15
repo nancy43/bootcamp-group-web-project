@@ -28,4 +28,7 @@ body {
     .mb-5 {
         margin-bottom: 2rem !important;
     }
+    #points {
+        font-size: 1.4rem;
+    }
 }

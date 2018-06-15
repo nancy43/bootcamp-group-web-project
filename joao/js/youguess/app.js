@@ -5,7 +5,7 @@ class YouGuess {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
             backgroundColor: '#c4ede5',
-            totalQuestions: 10,
+            totalQuestions: 3,
             email: '',
             users: [],
             question: '',
@@ -154,7 +154,7 @@ class YouGuess {
             <div class="col">
                 <section class="card mb-3 card-body">
                     <div class="d-flex border-bottom mb-3 pb-1">
-                        <h4 style="flex: 1;">You've got <span id="points"></span> pts</h4>
+                        <h3 style="flex: 1;">You've got <span id="points"></span></h3>
                         <button id="button-save" style="align-self: center;" class="btn btn-info mr-2">Save</button>
                         <button id="button-back" style="align-self: center;" class="btn btn-success">Back</button>
 
@@ -182,11 +182,11 @@ class YouGuess {
 
     showResults(){
         const total = this.props.playerState.filter(value => value.isCorrect).length;
-        this.points.innerHTML = total;
+        this.points.innerHTML = `${total} pts`;
         const cards = this.props.playerState.map(({name, country, isCorrect}) => {
             return `
             <div class="col-sm-12 col-md-3 mb-3 d-flex">
-                <div class="border card-body">
+                <div class="border card-body ${isCorrect ? 'border-success': 'border-danger'}">
                     <p class="text-capitalize">${name}</p>
                     <p>${country}</p>
                     <h3 style="position: absolute; bottom: 5px;right: 25px;">${isCorrect ? '👍': '👎'}</h3>
