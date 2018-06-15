@@ -1,11 +1,15 @@
 class YouGuess {
     constructor() {
 
+        // stops any timer on
+        clearInterval(window.timer);
+
         this.props = {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
             backgroundColor: '#c4ede5',
-            totalQuestions: 3,
+            totalQuestions: 6,
+            time : 0,
             email: '',
             users: [],
             question: '',
@@ -24,6 +28,12 @@ class YouGuess {
         // sets title, subtitle, questions number and background color
         this.setTheme();
 
+        
+    }
+
+    setTimer(){
+        this.props.time++;
+        this.timerCounter.innerHTML = `Time: ${this.props.time}`;
     }
 
     createDOMElements() {
@@ -31,6 +41,7 @@ class YouGuess {
         content.innerHTML = `
             
         <section class="card mb-3 card-body d-none" id="card-guess">
+        <div class="badge badge-warning" id="timer-counter" style="position: absolute;bottom: 7px;right: 12px;"></div>
         <div class="d-flex border-bottom mb-5 pb-2">
             <h3 style="flex: 1;" id="name-country" ></h3>
             <h3 id="current-question"><h3>
@@ -182,7 +193,7 @@ class YouGuess {
 
     showResults(){
         const total = this.props.playerState.filter(value => value.isCorrect).length;
-        this.points.innerHTML = `${total} pts`;
+        this.points.innerHTML = `${Math.floor(total*100/(this.props.time/3))} pts ${this.props.time}`;
         const cards = this.props.playerState.map(({name, country, isCorrect}) => {
             return `
             <div class="col-sm-12 col-md-3 mb-3 d-flex">
@@ -214,6 +225,7 @@ class YouGuess {
         this.nameCountry = document.querySelector('#name-country');
         this.currentQuestion = document.querySelector('#current-question');
         this.spinner = document.querySelector('#spinner');
+        this.timerCounter = document.querySelector('#timer-counter');
         this.genderChoice = document.querySelector('#gender-choice');
         this.labelMale = document.querySelector('#label-male');
         this.labelFemale = document.querySelector('#label-female');
@@ -286,8 +298,11 @@ class YouGuess {
             this.cardGuess.classList.remove('d-none');
             this.cardIntro.classList.add('d-none');
 
-        this.spinner.classList.add('d-none');
+            this.spinner.classList.add('d-none');
 
+            // initializes time to calculate points
+            // uses windows to stop interval anyway
+            window.timer = setInterval(this.setTimer.bind(this), 1000)
 
             this.nextQuestion();
             this.renderQuestion();

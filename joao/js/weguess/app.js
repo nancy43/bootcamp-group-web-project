@@ -1,6 +1,9 @@
 class WeGuess {
     constructor() {
 
+        // stops any timer on
+        clearInterval(window.timer);
+        
         this.props = {
             compliments: [
                 'an amazing', 'an excelent', 'a strong', 'a famous', 'a great'
