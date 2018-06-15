@@ -28,12 +28,32 @@ class YouGuess {
         // sets title, subtitle, questions number and background color
         this.setTheme();
 
+        this.getLocalData();
         
+    }
+
+    getLocalData(){
+        return JSON.parse(localStorage.getItem('gender-game'));
+    }
+
+    setLocalData(){
+        const points = this.calculatePoints();
+        const email = this.props.email.length > 24 ? this.props.email.substring(0,23) : this.props.email;
+        const player = {
+            ...this.getLocalData(),
+            [email] : points
+        }
+
+        localStorage.setItem('gender-game', JSON.stringify(player));
     }
 
     setTimer(){
         this.props.time++;
         this.timerCounter.innerHTML = `Time: ${this.props.time}`;
+    }
+
+    cancelTimer(){
+        clearInterval(window.timer);    
     }
 
     createDOMElements() {
@@ -191,9 +211,15 @@ class YouGuess {
         });
     }
 
-    showResults(){
+    calculatePoints(){
         const total = this.props.playerState.filter(value => value.isCorrect).length;
-        this.points.innerHTML = `${Math.floor(total*100/(this.props.time/3))} pts ${this.props.time}`;
+        const points = Math.floor(total*100/(this.props.time/3))
+        return points;
+    }
+
+    showResults(){
+        this.points.innerHTML = `${this.calculatePoints()} pts`;
+       
         const cards = this.props.playerState.map(({name, country, isCorrect}) => {
             return `
             <div class="col-sm-12 col-md-3 mb-3 d-flex">
@@ -210,7 +236,9 @@ class YouGuess {
     }
 
     handleSave(){
-
+        this.setLocalData();
+        alert('Saved!');
+        window.guess = new YouGuess();
     }
 
     initDOMElements() {
@@ -334,6 +362,7 @@ class YouGuess {
 
         } else {
             // render final frame
+            this.cancelTimer();
             this.createResultsDOMElements();
             this.showResults();
         }
