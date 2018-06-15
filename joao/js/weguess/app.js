@@ -152,6 +152,12 @@ class WeGuess {
 
     guessHandler() {
         const user = this.userNameInput.value;
+
+        if (user === '') {
+            alert('Please, provide your name');
+            return;
+        }
+
         const country = this.countrySelect.value;
 
         this.fetch.getGuess(user, country)
