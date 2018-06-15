@@ -10,8 +10,7 @@ class YouGuess {
             users: [],
             question: '',
             genderChoice: '',
-            playerState: [],
-            randomUnicode: ['🚀', '🎇', '🌊', '😺', '🍔'],
+            playerState: []
         }
 
         this.fetch = new FetchYouAPIs(this.props.totalQuestions);
@@ -77,7 +76,8 @@ class YouGuess {
 
                     <div class="input-group-append">
                         <button id="guess-button" class="btn btn-success" style="font-size: 1.9rem">
-                            <i class="zmdi zmdi-play-circle-outline"></i> Play
+                        <div id="spinner" class="typing_loader d-none"></div>
+                        <i class="zmdi zmdi-play-circle-outline"></i> Play
                         </button>
                     </div>
 
@@ -213,8 +213,7 @@ class YouGuess {
         this.cardIntro = document.querySelector('#card-intro');
         this.nameCountry = document.querySelector('#name-country');
         this.currentQuestion = document.querySelector('#current-question');
-        // this.genderChoiceFemale = document.querySelector('#gender-choice-female');
-        // this.genderChoiceMale = document.querySelector('#gender-choice-male');
+        this.spinner = document.querySelector('#spinner');
         this.genderChoice = document.querySelector('#gender-choice');
         this.labelMale = document.querySelector('#label-male');
         this.labelFemale = document.querySelector('#label-female');
@@ -273,8 +272,10 @@ class YouGuess {
     async handleGuess() {
         if (this.userEmailInput.value == '') {
             alert('You need to insert your email');
-            return
-        };
+            return;
+        }
+
+        this.spinner.classList.remove('d-none');
 
         try {
             const users = await this.fetch.getUsers();
@@ -285,11 +286,16 @@ class YouGuess {
             this.cardGuess.classList.remove('d-none');
             this.cardIntro.classList.add('d-none');
 
+        this.spinner.classList.add('d-none');
+
+
             this.nextQuestion();
             this.renderQuestion();
 
         } catch (err) {
-            console.log(err)
+            alert('An error has occurred! Try again later!')
+            this.spinner.classList.add('d-none');
+
         }
 
     }

@@ -75,6 +75,7 @@ class WeGuess {
 
         <div class="row justify-content-center" style="margin: 50px 0 10px 0">
             <button id="guess-button" class="btn btn-info" style="font-size: 1.9rem">
+                <div id="spinner" class="typing_loader d-none"></div>
                 <i class="zmdi zmdi-mail-send"></i> Go and Guess
             </button>
 
@@ -128,6 +129,7 @@ class WeGuess {
         this.failFind = document.querySelector('#fail-find');
         this.guessPercentage = document.querySelector('#guess-percentage');
         this.guessGender = document.querySelector('#guess-gender');
+        this.spinner = document.querySelector('#spinner');
 
         //start handlers
         this.guessButton.addEventListener('click', this.guessHandler.bind(this));
@@ -160,6 +162,8 @@ class WeGuess {
 
         const country = this.countrySelect.value;
 
+        this.spinner.classList.remove('d-none');
+
         this.fetch.getGuess(user, country)
             .then(data => {
                 const compliments = this.props.compliments;
@@ -177,9 +181,16 @@ class WeGuess {
                 
                 
                 this.props.cardInfo = false;
+                
+                this.spinner.classList.add('d-none');
+
                 this.render();
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.spinner.classList.add('d-none');
+                alert('An error has occurred! Try again later!')
+                
+            })
 
        
     }
