@@ -8,7 +8,7 @@ class YouGuess {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
             backgroundColor: '#c4ede5',
-            totalQuestions: 6,
+            totalQuestions: 10,
             time : 0,
             email: '',
             users: [],
@@ -28,21 +28,37 @@ class YouGuess {
         // sets title, subtitle, questions number and background color
         this.setTheme();
 
-        this.getLocalData();
+        this.renderGuessers();
         
     }
 
+    renderGuessers(){
+        const tableUI = document.querySelector('#tbody-guessers');
+        const data = this.getLocalData();
+        
+        const trs = data.map((value) =>{
+            return `
+            <tr>
+                <td>${value.email}</td>
+                <td>${value.points} pts</td>
+            </tr>
+            `;
+         }).join('');
+        
+        tableUI.innerHTML = trs;
+    }
+
     getLocalData(){
-        return JSON.parse(localStorage.getItem('gender-game'));
+        const data = localStorage.getItem('gender-game');
+        return data === null ? null : JSON.parse(data);
     }
 
     setLocalData(){
         const points = this.calculatePoints();
         const email = this.props.email.length > 24 ? this.props.email.substring(0,23) : this.props.email;
-        const player = {
-            ...this.getLocalData(),
-            [email] : points
-        }
+        const player = this.getLocalData() === null ? [] : [...this.getLocalData()];
+
+        player.push({email, points});
 
         localStorage.setItem('gender-game', JSON.stringify(player));
     }
@@ -128,47 +144,8 @@ class YouGuess {
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Nick</td>
-                                <td>10 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Caio</td>
-                                <td>9 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Nick</td>
-                                <td>10 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Caio</td>
-                                <td>9 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Nick</td>
-                                <td>10 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Caio</td>
-                                <td>9 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Nick</td>
-                                <td>10 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Caio</td>
-                                <td>9 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Nick</td>
-                                <td>10 pts</td>
-                            </tr>
-                            <tr>
-                                <td>Caio</td>
-                                <td>9 pts</td>
-                            </tr>
+                        <tbody id="tbody-guessers">
+                            
                         </tbody>
                     </table>
                 </div>
