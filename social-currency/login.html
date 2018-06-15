@@ -14,6 +14,9 @@
         
         <!-- Jquery -->
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="css/login.css"/>
     </head>
 
     <!-- BODY -->
@@ -91,13 +94,68 @@
           </div>
       
           <main class = "mdl-layout__content  mdl-color--grey-300">
-          </main>
+            <div class = "mdl-grid">
+                
+                <!-- MDL card - User -->
+                <div class="card-user mdl-cell mdl-cell--6-col mdl-card mdl-shadow--6dp">
+                    <div id="user-picture" class="mdl-card__title">
+                      <h2 id="user-name" class="mdl-card__title-text">User Name</h2>
+                    </div>
+
+                    <div id="user_info" class="mdl-card__supporting-text">
+                      <!-- USER INFO TO BE HERE -->
+                    </div>
+
+                    <div class="mdl-card__actions mdl-card--border">
+                      <div class="mdl-layout-spacer"></div>
+                      <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Edit</button>
+                    </div>
+                </div> <!-- MDL card -->
+                
+                <!-- MDL card - Transfer -->
+                <div class="card-transfer mdl-cell mdl-cell--6-col mdl-card mdl-shadow--6dp">
+                    <figure class="mdl-card__media">
+                      <img id="transfer-flag" src="http://via.placeholder.com/350x350" alt="" />
+                    </figure>
+
+                    <div class="mdl-card__title">
+					  <h1  id="transfer-title" class="mdl-card__title-text">From XXX to YYY</h1>
+				    </div>
+
+                    <div id="user_info" class="mdl-card__supporting-text">
+                        <span id="transfer-details">XXX$ 999 | 1 XXX = 1.99999 YYY | Total YYY $ 9999.99</span>
+                    </div>
+
+                    <div class="mdl-card__actions mdl-card--border">
+                      <div class="mdl-layout-spacer"></div>
+                      <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Edit</button>
+                    </div>
+                </div> <!-- MDL card -->
+                
+              </div> <!-- MDL grid -->
+         </main>
           
       </div> <!-- MDL layout -->
+        
+      <!-- Firebase scripts -->
+      <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+      <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyDPVlrenGYFaqRDIhipmTxeP6TKWdpPn5M",
+            authDomain: "my-currency-community.firebaseapp.com",
+            databaseURL: "https://my-currency-community.firebaseio.com",
+            projectId: "my-currency-community",
+            storageBucket: "my-currency-community.appspot.com",
+            messagingSenderId: "539261265518"
+          };
+          firebase.initializeApp(config);
+      </script>
 
       <!-- Page scripts -->
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"
           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
           crossorigin="anonymous"></script>
+      <script src="js/login.js"></script>
     </body>
 </html>

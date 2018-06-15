@@ -24,3 +24,40 @@
     justify-content: center;
     align-items: center;
 }
+
+#login-progress {
+    display: none;
+}
+
+#msgLoginError {
+    display: none;
+}
+
+/* CARDS */
+.mdl-grid {
+	max-width: 900px;
+}
+
+.mdl-card__actions {
+	display: flex;
+	box-sizing:border-box;
+	align-items: center;
+}
+
+.mdl-card {
+  width: 310px;
+}
+
+#user-picture {
+  color: #fff;
+  height: 310px;
+  background: url('http://via.placeholder.com/150x150') center / cover;
+}
+
+.mdl-card__media {
+	margin: 0;
+}
+.mdl-card__media > img {
+	max-width: 100%;
+}
+
