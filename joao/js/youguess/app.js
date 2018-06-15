@@ -10,7 +10,7 @@ class YouGuess {
             users: [],
             question: '',
             genderChoice: '',
-            playerState : [],
+            playerState: [],
             randomUnicode: ['🚀', '🎇', '🌊', '😺', '🍔'],
         }
 
@@ -147,20 +147,59 @@ class YouGuess {
         `;
     }
 
-    createResultsDOMElements(){
+    createResultsDOMElements() {
         const content = document.querySelector('#content');
         content.innerHTML = `
-        <div class="row" id="card-intro">
-            <div class="col-md-12 d-flex">
-                <section class="card mb-3 card-body" id="card-info">
-                    <h3 class="card-title border-bottom mb-5 pb-2">And, the results are...</h3>
-                    
+        <div class="row">
+            <div class="col">
+                <section class="card mb-3 card-body">
+                    <div class="d-flex border-bottom mb-3 pb-1">
+                        <h4 style="flex: 1;">You've got <span id="points"></span> pts</h4>
+                        <button id="button-save" style="align-self: center;" class="btn btn-info mr-2">Save</button>
+                        <button id="button-back" style="align-self: center;" class="btn btn-success">Back</button>
+
+                    </div>
+
+                    <div class="row" id="results">
+
+                        
+                    </div>
                 </section>
             </div>
-            
-            
         </div>
         `;
+
+        this.results = document.querySelector('#results');
+        this.points = document.querySelector('#points');
+        this.buttonSave = document.querySelector('#button-save');
+        this.buttonBack = document.querySelector('#button-back');
+
+        this.buttonSave.addEventListener('click', this.handleSave.bind(this));
+        this.buttonBack.addEventListener('click',() =>{
+            window.guess = new YouGuess();
+        });
+    }
+
+    showResults(){
+        const total = this.props.playerState.filter(value => value.isCorrect).length;
+        this.points.innerHTML = total;
+        const cards = this.props.playerState.map(({name, country, isCorrect}) => {
+            return `
+            <div class="col-sm-12 col-md-3 mb-3 d-flex">
+                <div class="border card-body">
+                    <p class="text-capitalize">${name}</p>
+                    <p>${country}</p>
+                    <h3 style="position: absolute; bottom: 5px;right: 25px;">${isCorrect ? '👍': '👎'}</h3>
+                </div>
+            </div>
+            `;
+        }).join('');
+       
+        this.results.innerHTML = cards;
+    }
+
+    handleSave(){
+
     }
 
     initDOMElements() {
@@ -274,7 +313,8 @@ class YouGuess {
 
         } else {
             // render final frame
-            this.renderEnd()
+            this.createResultsDOMElements();
+            this.showResults();
         }
 
     }
@@ -283,7 +323,7 @@ class YouGuess {
         return this.props.genderChoice === '' ? false : true;
     }
 
-    nextQuestion(){
+    nextQuestion() {
         if (!this.props.users.length) {
             return false;
         }
@@ -298,7 +338,7 @@ class YouGuess {
     }
 
     updatePlayerState() {
-        
+
         // track gender choice, name, and country
         const isCorrect = this.props.question.gender === this.props.genderChoice ? true : false;
         const state = {
@@ -306,7 +346,7 @@ class YouGuess {
             country: this.props.question.country,
             isCorrect
         }
-        
+
         this.props.playerState.push(state);
 
     }
@@ -320,7 +360,6 @@ class YouGuess {
     }
 
     renderEnd() {
-        //this.createResultsDOMElements();
     }
 
     getQuestionNumber() {
