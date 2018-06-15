@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+/*    outline: none;*/
+}
+
+.btn-right-icon {
+    margin-left: 10px;
+}
+
+/* LOGIN PAGE */
+.login-cover {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;       /* percent width relative to the viewport */
+    height: 100vh;      /* percent height relative to the viewport */
+    z-index: 100;       /* hide page */
+
+    /* align icon both vertically and horizontally */
+    /* ref.: https://css-tricks.com/centering-css-complete-guide */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
