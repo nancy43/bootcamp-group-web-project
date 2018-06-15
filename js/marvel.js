@@ -29,7 +29,10 @@ $.ajax({
       dataType:'json',
     }).then(resultAPI => {
      console.log(resultAPI);
-     alert(resultAPI.data.results[0].name);
+     document.getElementById("characterName").innerHTML = resultAPI.data.results[0].name;
+     document.getElementById("characterImage").src= resultAPI.data.results[0].thumbnail.path + "." 
+     																								+resultAPI.data.results[0].thumbnail.extension;
+     
     }).catch( e  => console.log(e));
 
 };
