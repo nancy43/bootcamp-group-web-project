@@ -1,10 +1,11 @@
 window.onload = () => {
+    const wg = document.querySelector('#wg');
+    const yg = document.querySelector('#yg');
     window.guess = new YouGuess();
 
 };
 
-const wg = document.querySelector('#wg');
-const yg = document.querySelector('#yg');
+
 
 wg.addEventListener('click', () => {
     window.guess = new WeGuess();

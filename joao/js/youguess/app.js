@@ -7,9 +7,8 @@ class YouGuess {
         this.props = {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
-            backgroundColor: '#c4ede5',
             totalQuestions: 10,
-            time : 0,
+            time: 0,
             email: '',
             users: [],
             question: '',
@@ -29,47 +28,47 @@ class YouGuess {
         this.setTheme();
 
         this.renderGuessers();
-        
+
     }
 
-    renderGuessers(){
+    renderGuessers() {
         const tableUI = document.querySelector('#tbody-guessers');
         const data = this.getLocalData();
-        
-        const trs = data.map((value) =>{
+
+        const trs = data.map((value) => {
             return `
             <tr>
                 <td>${value.email}</td>
                 <td>${value.points} pts</td>
             </tr>
             `;
-         }).join('');
-        
+        }).join('');
+
         tableUI.innerHTML = trs;
     }
 
-    getLocalData(){
+    getLocalData() {
         const data = localStorage.getItem('gender-game');
         return data === null ? null : JSON.parse(data);
     }
 
-    setLocalData(){
+    setLocalData() {
         const points = this.calculatePoints();
-        const email = this.props.email.length > 24 ? this.props.email.substring(0,23) : this.props.email;
+        const email = this.props.email.length > 24 ? this.props.email.substring(0, 23) : this.props.email;
         const player = this.getLocalData() === null ? [] : [...this.getLocalData()];
 
-        player.push({email, points});
+        player.push({ email, points });
 
         localStorage.setItem('gender-game', JSON.stringify(player));
     }
 
-    setTimer(){
+    setTimer() {
         this.props.time++;
         this.timerCounter.innerHTML = `Time: ${this.props.time}`;
     }
 
-    cancelTimer(){
-        clearInterval(window.timer);    
+    cancelTimer() {
+        clearInterval(window.timer);
     }
 
     createDOMElements() {
@@ -183,36 +182,36 @@ class YouGuess {
         this.buttonBack = document.querySelector('#button-back');
 
         this.buttonSave.addEventListener('click', this.handleSave.bind(this));
-        this.buttonBack.addEventListener('click',() =>{
+        this.buttonBack.addEventListener('click', () => {
             window.guess = new YouGuess();
         });
     }
 
-    calculatePoints(){
+    calculatePoints() {
         const total = this.props.playerState.filter(value => value.isCorrect).length;
-        const points = Math.floor(total*100/(this.props.time/3))
+        const points = Math.floor(total * 100 / (this.props.time / 3))
         return points;
     }
 
-    showResults(){
+    showResults() {
         this.points.innerHTML = `${this.calculatePoints()} pts`;
-       
-        const cards = this.props.playerState.map(({name, country, isCorrect}) => {
+
+        const cards = this.props.playerState.map(({ name, country, isCorrect }) => {
             return `
             <div class="col-sm-12 col-md-3 mb-3 d-flex">
-                <div class="border card-body ${isCorrect ? 'border-success': 'border-danger'}">
+                <div class="border card-body ${isCorrect ? 'border-success' : 'border-danger'}">
                     <p class="text-capitalize">${name}</p>
                     <p>${country}</p>
-                    <h3 style="position: absolute; bottom: 5px;right: 25px;">${isCorrect ? '👍': '👎'}</h3>
+                    <h3 style="position: absolute; bottom: 5px;right: 25px;">${isCorrect ? '👍' : '👎'}</h3>
                 </div>
             </div>
             `;
         }).join('');
-       
+
         this.results.innerHTML = cards;
     }
 
-    handleSave(){
+    handleSave() {
         this.setLocalData();
         alert('Saved!');
         window.guess = new YouGuess();
@@ -282,7 +281,11 @@ class YouGuess {
         this.mainTitle.innerHTML = this.props.title;
         this.mainSubtitle.innerHTML = this.props.subtitle;
         this.questionsNumber.innerHTML = this.props.totalQuestions;
-        document.body.style.backgroundColor = this.props.backgroundColor;
+        document.body.style.backgroundColor = '#c4ede5';
+        document.body.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23c4ede5'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1' gradientTransform='rotate(56,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2' gradientTransform='rotate(279,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.55'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E")`;
+        document.body.style.backgroundAttachment = 'fixed';
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
 
     }
 
