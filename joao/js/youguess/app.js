@@ -66,7 +66,7 @@ class YouGuess {
 
     renderGuessers() {
         const tableUI = document.querySelector('#tbody-guessers');
-        const data = this.getLocalData();
+        const data = this.getLocalData() || [];
 
         const trs = data
             .sort((a, b) => b.points - a.points)
