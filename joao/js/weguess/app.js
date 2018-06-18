@@ -36,6 +36,36 @@ class WeGuess {
         this.render();
     }
 
+    modal(message) {
+
+        const dialog = `
+            <div class="modal" id="modal-control">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Look Up!</h5>
+                    
+                </div>
+                <div class="modal-body">
+                    <p>${message}</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            </div>
+            <div class="modal-backdrop show " id="backdrop-control"></div>
+            
+            `;
+        const modal = document.querySelector('#modal');
+        modal.innerHTML = dialog;
+
+        setTimeout(() => {
+            modal.innerHTML = '';
+        }, 1500);
+
+    };
+
     createDOMElements() {
         const content = document.querySelector('#content');
         content.innerHTML = `        
@@ -160,7 +190,7 @@ class WeGuess {
         const user = this.userNameInput.value;
 
         if (user === '') {
-            alert('Please, provide your name');
+            this.modal('Please, provide your name');
             return;
         }
 
@@ -192,7 +222,7 @@ class WeGuess {
             })
             .catch(err => {
                 this.spinner.classList.add('d-none');
-                alert('An error has occurred! Try again later!')
+                this.modal('An error has occurred! Try again later!')
 
             })
 

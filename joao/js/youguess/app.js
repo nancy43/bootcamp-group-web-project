@@ -7,7 +7,7 @@ class YouGuess {
         this.props = {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
-            totalQuestions: 10,
+            totalQuestions: 1,
             time: 0,
             email: '',
             users: [],
@@ -30,6 +30,39 @@ class YouGuess {
         this.renderGuessers();
 
     }
+
+    modal(message, callback = undefined) {
+
+        const dialog = `
+            <div class="modal" id="modal-control">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Look Up!</h5>
+                    
+                </div>
+                <div class="modal-body">
+                    <p>${message}</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            </div>
+            <div class="modal-backdrop show " id="backdrop-control"></div>
+            
+            `;
+        const modal = document.querySelector('#modal');
+        modal.innerHTML = dialog;
+
+        setTimeout(() => {
+            modal.innerHTML = '';
+            if (callback !== undefined) {
+                callback();
+            }
+        }, 1500);
+
+    };
 
     renderGuessers() {
         const tableUI = document.querySelector('#tbody-guessers');
@@ -213,8 +246,11 @@ class YouGuess {
 
     handleSave() {
         this.setLocalData();
-        alert('Saved!');
-        window.guess = new YouGuess();
+        this.modal('Saved!', () => window.guess = new YouGuess());
+        setTimeout(() => {
+
+
+        }, 2000);
     }
 
     initDOMElements() {
@@ -253,7 +289,6 @@ class YouGuess {
             this.props.genderChoice = control.value;
             this.updateGenderUI();
         }
-        // console.log(x);
     }
 
     updateGenderUI() {
@@ -291,7 +326,7 @@ class YouGuess {
 
     async handleGuess() {
         if (this.userEmailInput.value == '') {
-            alert('You need to insert your email');
+            this.modal('You need to insert your email');
             return;
         }
 
@@ -316,7 +351,7 @@ class YouGuess {
             this.renderQuestion();
 
         } catch (err) {
-            alert('An error has occurred! Try again later!')
+            this.modal('An error has occurred! Try again later!')
             this.spinner.classList.add('d-none');
 
         }
@@ -327,7 +362,7 @@ class YouGuess {
 
         // verify if a gender was selected
         if (!this.isGenderSelected()) {
-            alert('Select a gender');
+            this.modal('Select a gender');
             return;
         }
 
