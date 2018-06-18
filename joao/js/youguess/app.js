@@ -7,7 +7,7 @@ class YouGuess {
         this.props = {
             title: 'Guess the gender',
             subtitle: 'Try to guess some genders!',
-            totalQuestions: 1,
+            totalQuestions: 10,
             time: 0,
             email: '',
             users: [],
