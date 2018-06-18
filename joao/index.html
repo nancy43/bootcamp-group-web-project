@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/bootstrap.css">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/spinner.css">
     <title>Guess Game</title>
 
 
@@ -39,11 +38,7 @@
 
     </nav>
 
-    <div id="content">
-
-
-
-    </div>
+    <div id="content"></div>
 
 
 
@@ -58,37 +53,8 @@
     <!-- creates a instance off YouGuess in window.app -->
     <script src="js/youguess/fetch.js"></script>
 
-    <script>
-        window.onload = () => {
-            window.guess = new YouGuess();
-
-        };
-
-        const wg = document.querySelector('#wg');
-        const yg = document.querySelector('#yg');
-
-        wg.addEventListener('click', () => {
-            window.guess = new WeGuess();
-
-            yg.classList.add('btn-outline-success');
-            yg.classList.remove('btn-success');
-            wg.classList.add('btn-info');
-            wg.classList.remove('btn-outline-info');
-
-            wg.blur();
-        })
-
-        yg.addEventListener('click', () => {
-            window.guess = new YouGuess();
-
-            wg.classList.add('btn-outline-info');
-            wg.classList.remove('btn-info');
-            yg.classList.add('btn-success');
-            yg.classList.remove('btn-outline-success');
-
-            yg.blur();
-        })
-    </script>
+    <!-- script for loading classes in window object -->
+    <script src="js/app.js"></script>
 </body>
 
 </html>
