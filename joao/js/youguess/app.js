@@ -68,14 +68,16 @@ class YouGuess {
         const tableUI = document.querySelector('#tbody-guessers');
         const data = this.getLocalData();
 
-        const trs = data.map((value) => {
-            return `
-            <tr>
-                <td>${value.email}</td>
-                <td>${value.points} pts</td>
-            </tr>
-            `;
-        }).join('');
+        const trs = data
+            .sort((a, b) => b.points - a.points)
+            .map((value) => {
+                return `
+                    <tr>
+                        <td>${value.email}</td>
+                        <td>${value.points} pts</td>
+                    </tr>
+                    `;
+            }).join('');
 
         tableUI.innerHTML = trs;
     }
