@@ -1,48 +1,56 @@
-
 body {
-  min-height: 75rem; /* Can be removed; just added for demo purposes */
+    min-height: 75rem;
+    /* Can be removed; just added for demo purposes */
+    color: white;
+}
+
+#web {
+    background: black!important;
+    color: white;
 }
 
 .navbar {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .bg-dark {
-    background-color: #343a40!important;
+    background-color: black!important;
 }
 
 .jumbotron {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  margin-bottom: 0;
-  background-color: #fff;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    margin-bottom: 0;
+    background-color: #fff;
 }
 
 .jumbotron p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .jumbotron-heading {
-  font-weight: 300;
+    font-weight: 300;
 }
 
 .jumbotron .container {
-  max-width: 40rem;
+    max-width: 40rem;
 }
 
 .area {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  background-color: #f7f7f7;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: #f7f7f7;
 }
 
 footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: black!important;
+    color: white!important;
 }
 
 footer p {
-  margin-bottom: .25rem;
+    margin-bottom: .25rem;
 }
 
 .float-right {

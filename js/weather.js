@@ -75,7 +75,7 @@ function newFunction2(day, day1) {
         day1 = "Sunday";
     } else if (day == '1') {
         day1 = "Monday";
-    } else if (day === '2') {
+    } else if (day == '2') {
         day1 = "Tuesday";
     } else if (day == '3') {
         day1 = "Wednesday";
