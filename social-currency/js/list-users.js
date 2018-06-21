@@ -1,17 +1,30 @@
+/* 
+	Author: 		Bruno Santos
+	Date:			2018-05-29
+	Version: 		1.0
+	Description:	Get random users
+	
+*/
 
 "use strict";
 let $ = function (id) {
     return document.getElementById(id);
 }
 
+/*--	Create the type of element you pass in the parameters
+*/
 let createNode = function(element) {
     return document.createElement(element);
 }
 
+/*--	Append the second parameter(element) to the first one
+*/
 let append = function(parent, el) {
     return parent.appendChild(el);
 }
 
+/*--	Fill section based on users object
+*/
 let fillSections = function(users) {
 	const sec_canada = $('left-sec');
 	const sec_brazil = $('right-sec');
@@ -34,6 +47,13 @@ let fillSections = function(users) {
 	});
 }
 
+/*--	It gets user's json object from API based on:
+		(1) 2 countries Canada and Brazil
+		(2) get 6 random users
+		(3) retrieve only name, picture, and country
+		
+		Reference: https://randomuser.me/documentation
+*/
 let initApp = function() {
 	let users = [];
 	
@@ -57,5 +77,6 @@ let initApp = function() {
 }
 
 window.onload = function () {
+    //$("currency_from").onchange = refreshCmbTo;
 	initApp();
 }
