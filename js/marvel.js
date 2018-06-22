@@ -36,8 +36,10 @@ $.ajax({
     }).catch( e  => console.log(e));
 
 };
-document.getElementById("marvelform").addEventListener('submit',find); 
-
-
+//Onload event 
+window.onload=function(){
+	document.getElementById("marvelform").addEventListener('submit',find);
+     
+};
 
 
