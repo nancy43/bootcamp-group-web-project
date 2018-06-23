@@ -16,7 +16,7 @@ function weather() {
 
         $.getJSON(url + latitude + "," + longitude + "?units=ca&callback=?", function(data) {
             var icon = data.currently.icon;
-            $('#temp').html((data.currently.temperature) + '°C');
+            $('#temp').html(Math.round((data.currently.temperature)) + '°C');
             $('#visibility').html('Visibility: ' + (data.currently.visibility) + 'km');
             $('#wind').html('Wind Speed: ' + (data.currently.windSpeed) + ' km/h');
             $('#minutely').html(data.minutely.summary);
