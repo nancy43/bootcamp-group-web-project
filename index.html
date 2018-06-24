@@ -5,29 +5,55 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Marvel</title>
 	
     <!-- Custom -->
     <link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/marvel.js"></script>
 
 </head>
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="">Character details</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+   </ul>
 <body>
-    <!--Get form id -->
+
+    
 	<form id="marvelform">
-		<input id='name'/>
-		<button type='submit'>Submit here
-
-		</button>
-	</form>
-    <!--Created label-->
-	<label>
-		name:
-	</label>
-	<span id="characterName"></span>
-	<img id="characterImage" height=200 width=200/>
-
+    <input id='name'/>	
+    <br/>
+    <Section id='description'/>
+	<button type='submit'><i class="material-icons">search</i></button>
+	
+  <div class="chip">
+	  <p id="characterName"></p><br/>
+	  <img id="characterImage"/>
+    <p id="characterDescription"></p>
+ 
+  </div>
+  <div class="chip">
+	  <section id="characterName"></section><br/>
+	  <img id="characterImage"/>
+    <p id="characterDescription"></p>
+  </div>
+  
+  <div class="chip">
+	  <section id="characterName"></section><br/>
+	  <img id="characterImage"/>
+    <p id="characterDescription"></p>
+  </div>
+  
+  </form>
+  
+  <footer>
+     &copy; Copyright 2018. All Rights Reserved.<br>
+     <a href="mailto:manu.panday5@gmail.com">manu.panday5@gmail.com</a>
+		 <i class="material-icons">mailbox</i>
+  </footer>
 </body>
 
 </html>
