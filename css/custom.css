@@ -1,12 +1,5 @@
 body {
     min-height: 75rem;
-    /* Can be removed; just added for demo purposes */
-    ;
-}
-
-#web {
-    background: black!important;
-    color: white;
 }
 
 .navbar {
@@ -14,7 +7,7 @@ body {
 }
 
 .bg-dark {
-    background-color: black!important;
+    background-color: #343a40!important;
 }
 
 .jumbotron {
@@ -45,8 +38,6 @@ body {
 footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
-    background: black!important;
-    color: white!important;
 }
 
 footer p {
